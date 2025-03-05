@@ -9,6 +9,7 @@ import { Moment } from 'moment';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { FilterDataService } from 'src/app/shared/services/filter-data.service';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-data',
@@ -28,6 +29,7 @@ export class TransactionDataComponent implements OnInit {
     private transactionService: TransactionService,
     private filterDataService: FilterDataService,
     private breakpointObserver: BreakpointObserver,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -109,6 +111,10 @@ export class TransactionDataComponent implements OnInit {
     this.filteredTransactions = this.filterDataService.filterTransactions(this.transactions, this.selectedMonth, this.selectedYear);
     this.filterDataService.emitMonthYearChange(this.selectedMonth, this.selectedYear);
     this.filterDataService.emitFilteredTransactions(this.filteredTransactions);
+  }
+
+  goToSummary(): void { 
+    this.router.navigate(['/summary']);
   }
 
 }
