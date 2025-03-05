@@ -1,0 +1,12 @@
+mat-toolbar {
+  display: flex;
+  justify-content: center;
+  background-color: #304090;
+  color: #eeeaea;
+  font-size: 14px;
+}
+
+.logo {
+  margin-left: 5px;
+  font-family: 'Roboto', sans-serif;
+}

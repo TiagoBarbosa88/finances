@@ -1,0 +1,101 @@
+.container {
+  padding: 10px;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  margin: 10px 20px;
+  /* padding: 10px; */
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.card {
+  flex: 1;
+  text-align: center;
+  border-radius: 12px;
+  padding: 16px;
+  /* background: #f9f9f9; */
+  border: 1px solid #85888a;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Responsividade dos cards para telas menores */
+  @media (max-width: 768px) {
+    width: 100%; /* Cards ocupando 100% da largura em telas pequenas */
+    padding: 12px; /* Menos padding nas telas menores */
+  }
+}
+
+/* .receita {
+  border: 2px solid #4caf50;
+  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.4);
+} */
+
+.despesa {
+  border: 2px solid #f44336; /* Vermelho */
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.4);
+}
+
+.saldo {
+  border: 2px solid #63b2f4; /* Azul */
+  box-shadow: 0 4px 8px rgba(0, 0, 255, 0.4);
+}
+
+.neutro {
+  border: 2px solid #ffc107; /* Amarelo */
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.4);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  /* As cores dos ícones agora vão ser definidas pelas classes específicas abaixo */
+}
+
+.icon-positive {
+  color: #4caf50; 
+}
+
+.icon-negative {
+  color: #f44336;
+}
+
+.icon-neutral {
+  color: #ffc107; 
+}
+
+.icon-saldo {
+  color: #63b2f4; 
+}
+
+mat-card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.balance-value {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+

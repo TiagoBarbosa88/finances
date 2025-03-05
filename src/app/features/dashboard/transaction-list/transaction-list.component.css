@@ -1,0 +1,186 @@
+.full-width-table {
+  width: 100%;
+}
+
+.container {
+  /* margin-top: 10px; */
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  width: 100%;
+}
+
+.mat-elevation-z4 {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.mat-header-cell,
+.mat-cell {
+  padding: 8px;
+}
+
+.no-transactions-message {
+  text-align: center;
+  padding: 20px;
+}
+
+table {
+  border-collapse: collapse; /* Garante bordas colapsadas na tabela inteira */
+  border: 1px solid black;
+}
+
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+tfoot th,
+tfoot td {
+  border-top: 1px solid black; /* Linha no topo do rodapé */
+  font-weight: bold; /* Deixe o texto em negrito (opcional) */
+  background-color: #f9f9f9; /* Fundo claro para destacar o rodapé (opcional) */
+}
+
+.mat-mdc-header-row {
+  background-color: #304090;
+  color: antiquewhite;
+}
+
+/* Classe para Receita */
+.receita {
+  color: green;
+  line-height: 24px; /* Ajuste o line-height para garantir que o texto fique bem alinhado com o ícone */
+}
+
+/* Ícone de Receita (verde) */
+.receita-icon {
+  color: green;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* Classe para Despesa (vermelho) */
+.despesa {
+  color: rgb(231, 34, 27);
+  line-height: 24px;
+}
+
+/* Ícone de Despesa (vermelho) */
+.despesa-icon {
+  color: rgb(231, 34, 27);
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.edit {
+  color: rgb(137, 139, 136);
+  margin-right: 5px;
+}
+
+.delete {
+  color: rgb(231, 34, 27);
+}
+
+.no-transactions-message {
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.paginator-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px 0;
+}
+
+.item-count {
+  font-size: 14px;
+  color: #121212;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mat-header-cell,
+  .mat-cell {
+    padding: 4px;
+  }
+
+  .mat-table {
+    display: none;
+  }
+
+  .transaction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Define o espaçamento entre os cards */
+    margin-bottom: 5px;
+  }
+
+  .transaction-item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0; /* Evita conflitos com o gap */
+  }
+
+  .transaction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .transaction-title {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .transaction-value {
+    font-size: 16px;
+    color: #252626;
+  }
+
+  .transaction-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .transaction-type {
+    display: flex;
+    align-items: center;
+  }
+
+  .transaction-category,
+  .transaction-date {
+    font-size: 14px;
+    color: #757575;
+  }
+
+  .transaction-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .paginator-container {
+    flex-direction: row;
+  }
+}
+

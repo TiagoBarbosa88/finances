@@ -1,0 +1,137 @@
+.container_loggin {
+  display: flex;
+  height: 100%;
+  background-color: #f5f5f5;
+}
+
+mat-label {
+  display: flex;
+  align-items: center;
+}
+
+.material-icons {
+  margin-right: 5px;
+}
+
+.info-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+  color: white;
+  text-align: center;
+}
+
+.info-side h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.info-side span {
+  color: #ffcc00;
+}
+
+.info-side img {
+  max-width: 65%;
+  margin-top: 2rem;
+  border-radius: 5px;
+}
+
+.form-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  background: white;
+}
+
+.mat-tab-group {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+button.forgot-password {
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  /* Container principal: Coluna para mobile */
+  .container_loggin {
+    flex-direction: column;
+    height: auto; /* Ajusta o tamanho para permitir rolagem */
+  }
+
+  /* Info-side: Redimensiona para ocupar o topo */
+  .info-side {
+    flex: none;
+    height: auto;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .info-side img {
+    max-width: 80%; /* Reduz a imagem no mobile */
+  }
+
+  .info-side h1 {
+    font-size: 1.5rem; /* Reduz o tamanho do título */
+  }
+
+  /* Form-side: Fica abaixo do Info-side */
+  .form-side {
+    flex: none;
+    padding: 1.5rem;
+    background: white;
+  }
+
+  /* Tab group: Espaçamento no mobile */
+  .mat-tab-group {
+    margin-top: 1rem;
+  }
+
+  /* Botões e inputs: Mais espaço para toque */
+  .form {
+    gap: 1.5rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  button.forgot-password {
+    font-size: 0.9rem; /* Reduz o tamanho do texto */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Estilos adicionais para telas muito pequenas */
+  .info-side h1 {
+    font-size: 1.2rem;
+  }
+
+  .info-side img {
+    max-width: 70%;
+  }
+
+  .form-side {
+    padding: 1rem;
+  }
+
+  button.forgot-password {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,18 @@
+<mat-form-field appearance="outline">
+  <mat-label>Selecione Mês e Ano</mat-label>
+  <input 
+    matInput 
+    [matDatepicker]="monthPicker" 
+    [formControl]="date" 
+    [min]="minDate" 
+    [max]="maxDate" 
+    readonly>
+  <mat-datepicker-toggle matIconSuffix [for]="monthPicker"></mat-datepicker-toggle>
+  <mat-datepicker
+    #monthPicker
+    startView="multi-year"
+    (monthSelected)="setMonthAndYear($event, monthPicker)"
+    [startAt]="startDate"
+    panelClass="example-month-picker">
+  </mat-datepicker>
+</mat-form-field>

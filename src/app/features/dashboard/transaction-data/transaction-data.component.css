@@ -1,0 +1,28 @@
+.container-filter {
+  display: flex;
+  justify-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.btn {
+  min-width: 180px;  
+  min-height: 56px; 
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+  .container-filter {
+    display: flex;
+    flex-direction: column;
+  }
+  .btn-mobile {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .btn {
+    min-width: 80% !important;
+  }
+}

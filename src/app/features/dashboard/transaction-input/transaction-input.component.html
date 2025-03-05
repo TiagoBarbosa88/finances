@@ -1,0 +1,112 @@
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>X</button>
+</mat-dialog-actions>
+
+<mat-dialog-content class="mat-typography">
+<div *ngIf="isWeb; else mobileView">
+  <h2 class="title">Adicionar Transação</h2>
+  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()"  class="form-row">  
+    <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item">
+      <mat-label>Valor</mat-label>
+      <input matInput type="number" formControlName="value">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item tipo">
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="receita">Receita</mat-option>
+        <mat-option value="despesa">Despesa</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <!-- <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item categoria">
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.category_name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item categoria">
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.category_name || category.categoryName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    
+    <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item data">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="selectedDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="transactionForm.invalid" class="btn">Adicionar</button>
+  </form>
+</div>
+
+<ng-template #mobileView>
+  <!-- <div *ngIf="isWeb || showForm; else showButton"> -->
+    <h2 class="title">Adicionar Transação</h2>
+    <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()"  class="form-row">  
+      <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item">
+        <mat-label>Valor</mat-label>
+        <input matInput type="number" formControlName="value">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item tipo">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="receita">Receita</mat-option>
+          <mat-option value="despesa">Despesa</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item categoria">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.category_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      
+      <mat-form-field appearance="outline" hideRequiredMarker="true" class="flex-item data">
+        <mat-label>Data</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="selectedDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="transactionForm.invalid" class="btn">Adicionar</button>
+      <button mat-raised-button color="warn" (click)="navigateToHome()"  class="btn">
+        Voltar
+      </button>
+    </form>
+  <!-- </div> -->
+</ng-template>
+
+<!-- <ng-template #showButton>
+  <div class="btn-mobile">
+    <h2 class="title">Adicionar Transação</h2>
+    <button mat-raised-button color="primary" class="btn" (click)="navigateToAddTransaction()">
+      Adicionar
+    </button>
+  </div>
+</ng-template> -->
+</mat-dialog-content>
