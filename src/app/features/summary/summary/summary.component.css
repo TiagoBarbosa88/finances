@@ -1,6 +1,6 @@
-.container {
+/* .container {
   padding: 20px;
-}
+} */
 
 .filter-year {
   display: flex;
@@ -68,7 +68,7 @@ strong, .strong {
   text-align: center;
 }
 
-.btn {
+.btn-actions {
   background-color: rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
   cursor: pointer;
@@ -76,7 +76,7 @@ strong, .strong {
   width: 100%;
 }
 
-.btn:hover{
+.btn-actions:hover{
   transform: scale(1.02);
   background-color: rgba(0, 0, 0, 0.2);
 }
@@ -139,6 +139,12 @@ margin-bottom: 5px;
 } */
 
 @media (max-width: 768px) {
+  main {
+    margin: 0 auto;
+    width: 100%;
+    border:  1px solid red;
+  }
+
   .exemple-card {
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -174,5 +180,7 @@ margin-bottom: 5px;
     width: 100%;
     font-size: 16px;
   }  
+
+  
   
 }

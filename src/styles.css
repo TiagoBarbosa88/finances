@@ -25,7 +25,7 @@ html, body {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  pad: 20px;
+  /* pad: 20px; */
   gap: 10px; /* Define o espaçamento entre os componentes */
 }
 
@@ -35,7 +35,7 @@ html, body {
   flex-direction: column;
   width: 95%;
   margin: 0 auto;
-  padding: 20px;
+  /* padding: 20px; */
   gap: 10px; /* Define o espaçamento entre os componentes */
 }
 

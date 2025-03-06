@@ -2,16 +2,8 @@
   <div class="container-filter">
 
     <!-- Componente de Filtro -->
-    <div class="filter-date">
-      <!-- <mat-form-field appearance="outline">
-        <mat-label>Selecione Mês e Ano</mat-label>
-        <input matInput [matDatepicker]="monthPicker" (dateChange)="onMonthChange($event)">
-        <mat-datepicker-toggle matSuffix [for]="monthPicker"></mat-datepicker-toggle>
-        <mat-datepicker #monthPicker startView="multi-year" (monthSelected)="chosenMonthHandler($event, monthPicker)" panelClass="example-month-picker"></mat-datepicker>
-      </mat-form-field> -->
-
+    <div class="btn-mobile">    
       <app-transaction-filter></app-transaction-filter>
-
     </div>
 
     <!-- Botão para Adicionar Transação -->
@@ -22,7 +14,7 @@
     </div>
 
     <!-- Botão para Adicionar Transação -->
-    <div class="summary">
+    <div class="btn-mobile">
       <button mat-raised-button color="primary" class="btn" (click)="goToSummary()">
         Sumário
       </button>
