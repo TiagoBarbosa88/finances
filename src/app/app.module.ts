@@ -26,6 +26,7 @@ import { TransactionListComponent } from './features/dashboard/transaction-list/
 import { TransactionEditComponent } from './features/dashboard/transaction-edit/transaction-edit.component';
 import { TransactionDataComponent } from './features/dashboard/transaction-data/transaction-data.component';
 import { TransactionFilterComponent } from './features/dashboard/transaction-filter/transaction-filter.component';
+import { SummaryComponent } from './features/summary/summary/summary.component';
 
 registerLocaleData(localePt);
 @NgModule({
@@ -41,6 +42,7 @@ registerLocaleData(localePt);
     TransactionEditComponent,
     TransactionDataComponent,
     TransactionFilterComponent,
+    SummaryComponent,
   ],
   imports: [
     BrowserModule,

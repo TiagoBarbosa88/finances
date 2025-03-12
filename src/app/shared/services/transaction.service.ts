@@ -10,18 +10,49 @@ import { environment } from 'src/environments/environment';
 })
 export class TransactionService {
   private transactionsApi = environment.transactionUrl;
+  
   private transactionsSubject = new BehaviorSubject<Transaction[]>([]);
   transactions$ = this.transactionsSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  private cache: Transaction[] | null = null;
+  private cacheTimestamp: number | null = null;
+  private cacheDuration = 5 * 60 * 1000; // Cache duration in milliseconds (e.g., 5 minutes)
+
+  constructor(private http: HttpClient) {
+    this.loadTransactions();
+  }
+
+  private loadTransactions(): void {
+    if (this.cache && this.cacheTimestamp && (Date.now() - this.cacheTimestamp < this.cacheDuration)) {
+      console.log('Usando cache de transações');
+      this.transactionsSubject.next(this.cache);
+    } else {
+      console.log('Carregando transações da API');
+      this.http.get<Transaction[]>(this.transactionsApi).pipe(
+        tap(transactions => { 
+          console.log('Transações recebidas da API:', transactions);
+          this.cache = transactions;
+          this.cacheTimestamp = Date.now();
+          this.transactionsSubject.next(transactions);
+        })
+      ).subscribe();
+    }
+  }
 
   getTransactions(): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(this.transactionsApi).pipe(
+    return this.transactions$;
+  }
+
+  refreshTransactions(): void {
+    console.log('Atualizando transações da API');
+    this.http.get<Transaction[]>(this.transactionsApi).pipe(
       tap(transactions => { 
         console.log('Transações recebidas da API:', transactions);
-        this.transactionsSubject.next(transactions)
+        this.cache = transactions;
+        this.cacheTimestamp = Date.now();
+        this.transactionsSubject.next(transactions);
       })
-    );
+    ).subscribe();
   }
 
   createTransaction(transaction: Transaction): Observable<Transaction> {
@@ -47,9 +78,5 @@ export class TransactionService {
     return this.http.delete<Transaction>(url).pipe(
       tap(() => this.refreshTransactions())
     );
-  }
-
-  private refreshTransactions(): void {
-    this.getTransactions().subscribe();
   }
 }
