@@ -24,13 +24,10 @@ export class TransactionService {
 
   private loadTransactions(): void {
     if (this.cache && this.cacheTimestamp && (Date.now() - this.cacheTimestamp < this.cacheDuration)) {
-      console.log('Usando cache de transações');
       this.transactionsSubject.next(this.cache);
     } else {
-      console.log('Carregando transações da API');
       this.http.get<Transaction[]>(this.transactionsApi).pipe(
         tap(transactions => { 
-          console.log('Transações recebidas da API:', transactions);
           this.cache = transactions;
           this.cacheTimestamp = Date.now();
           this.transactionsSubject.next(transactions);
@@ -44,10 +41,8 @@ export class TransactionService {
   }
 
   refreshTransactions(): void {
-    console.log('Atualizando transações da API');
     this.http.get<Transaction[]>(this.transactionsApi).pipe(
       tap(transactions => { 
-        console.log('Transações recebidas da API:', transactions);
         this.cache = transactions;
         this.cacheTimestamp = Date.now();
         this.transactionsSubject.next(transactions);

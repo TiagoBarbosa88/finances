@@ -89,7 +89,6 @@ export class TransactionListComponent implements AfterViewInit, OnInit {
     this.filteredTransactions = data;
     this.dataSource.data = data;
     this.dataSource._updateChangeSubscription(); // Força a atualização do dataSource
-    console.log('DataSource após atualização:', this.dataSource.data);
     this.cdr.markForCheck(); // Marca para verificação de mudanças
   }
 
@@ -114,7 +113,6 @@ export class TransactionListComponent implements AfterViewInit, OnInit {
   }
 
   filterTransaction(): void {
-    console.log('selectedMonth:', this.selectedMonth, 'selectedYear:', this.selectedYear);
   
     if (this.selectedMonth !== undefined && this.selectedYear !== undefined) {
       this.filteredTransactions = this.transactions.filter(transaction => {
@@ -125,7 +123,6 @@ export class TransactionListComponent implements AfterViewInit, OnInit {
         return transactionMonth === this.selectedMonth && transactionYear === this.selectedYear;
       });
   
-      console.log('Transações após filtro:', this.filteredTransactions);
     } else {
       this.filteredTransactions = this.transactions;
     }

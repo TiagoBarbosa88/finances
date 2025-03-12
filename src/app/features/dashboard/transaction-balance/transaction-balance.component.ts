@@ -32,7 +32,6 @@ export class TransactionBalanceComponent implements OnInit {
     });
 
     this.transactionService.transactions$.subscribe(transactions => {
-      console.log('Transações recebidas no TransactionBalanceComponent:', transactions);
       this.filteredTransactions = this.filterTransactions(transactions);
       this.updateTotals();
     });
@@ -54,7 +53,6 @@ export class TransactionBalanceComponent implements OnInit {
 
       this.transactionService.getTransactions().subscribe({
         next: (transactions: Transaction[]) => {
-          console.log('Transações recebidas na inicialização:', transactions);
           this.filteredTransactions = this.filterTransactions(transactions);
           this.updateTotals();
         },
@@ -66,9 +64,7 @@ export class TransactionBalanceComponent implements OnInit {
   }
 
   private filterTransactions(transactions: Transaction[]): Transaction[] {
-    console.log('Filtrando transações:', transactions);
-    const filtered = this.filterDateService.filterTransactions(transactions, this.selectedMonth, this.selectedYear);
-    console.log('Transações após filtro:', filtered);
+    const filtered = this.filterDateService.filterTransactions(transactions, this.selectedMonth, this.selectedYear);    
     return filtered;
   }
 
@@ -89,12 +85,6 @@ export class TransactionBalanceComponent implements OnInit {
     });
 
     this.saldo = this.receita - this.despesa;
-
-    console.log('Totais atualizados:', {
-      receita: this.receita,
-      despesa: this.despesa,
-      saldo: this.saldo
-    });
   }
 
   // Função para atualizar mês e ano selecionados
