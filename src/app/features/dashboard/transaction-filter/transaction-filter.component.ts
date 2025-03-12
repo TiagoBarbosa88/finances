@@ -91,7 +91,6 @@ export class TransactionFilterComponent implements OnInit {
     });
   }
 
-
   /**
    * Define o mês e o ano selecionados e atualiza o FormControl
    */
@@ -101,22 +100,16 @@ export class TransactionFilterComponent implements OnInit {
     ctrlValue.year(normalizedMonthAndYear.year());
     this.date.setValue(ctrlValue);
 
-    this.selectedMonth = ctrlValue.month()+1;
+    this.selectedMonth = ctrlValue.month() + 1;
     this.selectedYear = ctrlValue.year();
     this.filterTransactions();
 
     datepicker.close();
-
-    // const selectedMonth = ctrlValue.month();
-    // const selectedYear = ctrlValue.year();
-
-    // Emite os valores de filtro para o serviço
-    // this.filterDataService.emitMonthYearChange(selectedMonth, selectedYear);
   }
 
   chosenMonthHandler(normalizedMonth: Moment, datapicker: MatDatepicker<Moment>): void {
     const ctrValue = this.date.value ?? moment();
-    ctrValue.month(normalizedMonth.month())
+    ctrValue.month(normalizedMonth.month());
     ctrValue.year(normalizedMonth.year());
     this.date.setValue(ctrValue);
     this.selectedMonth = ctrValue.month();

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Transaction } from 'src/app/shared/models/transaction.model';
 import { FilterDataService } from 'src/app/shared/services/filter-data.service';
+import { TransactionService } from 'src/app/shared/services/transaction.service';
 
 @Component({
   selector: 'app-summary',
@@ -17,11 +18,23 @@ export class SummaryComponent implements OnInit {
   minYear: number = 2025;
   transactions: Transaction[] = [];
 
-  constructor(private filterDataService: FilterDataService) { }
+  constructor(
+    private filterDataService: FilterDataService,
+    private transactionService: TransactionService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
     this.loadTransactions();
+
+    // Inscreva-se nas atualizações das transações
+    this.transactionService.transactions$.subscribe(transactions => {
+      this.transactions = transactions;
+      this.loadMonthyData();
+      this.cdr.markForCheck(); // Marcar para verificação de mudanças
+    });
   }
+  
 
   loadTransactions(): void {
     this.filterDataService.getTransactions().subscribe( transactions => {
@@ -58,11 +71,12 @@ export class SummaryComponent implements OnInit {
   filterYears(year: number): boolean {
     return year >= this.minYear;
   }
+  
 
   changeYear(year: number): void {
     if(this.filterYears(year)){
       this.currentYear = year;
-      this.loadTransactions();
+      this.loadMonthyData();
     }
   }
 

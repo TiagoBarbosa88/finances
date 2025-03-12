@@ -61,10 +61,8 @@ export class TransactionListComponent implements AfterViewInit, OnInit {
     this.filterDataService.filteredTransactions$.subscribe(filteredTransactions => {
       this.updateDataSource(filteredTransactions);
     });
-  }
 
-  private loadInitialData() {
-    this.getCategories();
+    // Inscreva-se nas atualizações das transações
     this.transactionService.transactions$.subscribe(transactions => {
       this.transactions = transactions.map(transaction => ({
         ...transaction,
@@ -73,6 +71,10 @@ export class TransactionListComponent implements AfterViewInit, OnInit {
       this.filterTransaction();
       this.cdr.markForCheck(); // Marcar para verificação de mudanças
     });
+  }
+
+  private loadInitialData() {
+    this.getCategories();
     this.transactionService.getTransactions().subscribe();
   }
 

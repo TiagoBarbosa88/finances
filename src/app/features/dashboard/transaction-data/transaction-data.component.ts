@@ -61,22 +61,11 @@ export class TransactionDataComponent implements OnInit {
     const dialogRef = this.dialog.open(TransactionInputComponent);
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.transactionService.createTransaction(result).subscribe();
+      }
     });
   }
-
-  // onMonthChange(event: any): void {
-  //   const date = moment(event.value);
-  //   this.selectedMonth = date.month();
-  //   this.selectedYear = date.year();
-  //   this.filterDataService.emitMonthYearChange(this.selectedMonth, this.selectedYear);
-  // }
-
-  // chosenMonthHandler(normalizedMonth: moment.Moment, datapicker: any): void {
-  //   const ctrValue = moment();
-  //   ctrValue.month(normalizedMonth.month()).year(normalizedMonth.year());
-  //   this.onMonthChange({ value: ctrValue });
-  //   datapicker.close();
-  // }
 
   onMonthChange(event: any): void {
     const date = moment(event.value);
@@ -87,7 +76,7 @@ export class TransactionDataComponent implements OnInit {
 
   setMonthHandler(normalizedMonth: Moment, datapicker: MatDatepicker<Moment>): void {
     const ctrValue = this.date.value ?? moment();
-    ctrValue.month(normalizedMonth.month())
+    ctrValue.month(normalizedMonth.month());
     ctrValue.year(normalizedMonth.year());
     this.date.setValue(ctrValue);
     this.selectedMonth = ctrValue.month();
@@ -98,7 +87,7 @@ export class TransactionDataComponent implements OnInit {
 
   chosenMonthHandler(normalizedMonth: Moment, datapicker: MatDatepicker<Moment>): void {
     const ctrValue = this.date.value ?? moment();
-    ctrValue.month(normalizedMonth.month())
+    ctrValue.month(normalizedMonth.month());
     ctrValue.year(normalizedMonth.year());
     this.date.setValue(ctrValue);
     this.selectedMonth = ctrValue.month();
@@ -116,6 +105,4 @@ export class TransactionDataComponent implements OnInit {
   goToSummary(): void { 
     this.router.navigate(['/summary']);
   }
-
 }
-
