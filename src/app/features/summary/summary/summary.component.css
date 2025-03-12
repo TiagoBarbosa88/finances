@@ -68,17 +68,20 @@ strong, .strong {
   text-align: center;
 }
 
-.btn-actions {
-  background-color: rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-  cursor: pointer;
-  text-align: center;
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
-.btn-actions:hover{
+.btn-actions {
+  transition: transform 0.2s ease;
+}
+
+.btn-actions:hover {
   transform: scale(1.02);
-  background-color: rgba(0, 0, 0, 0.2);
+  /* background-color: rgba(0, 0, 0, 0.2); */
 }
 
 .header-center {
@@ -132,11 +135,6 @@ margin-bottom: 5px;
   color: white;
   padding: 1.5px 5px;  
 }
-
-/* .mat-card-actions {
-  text-align: center;
-  width: 100%;
-} */
 
 @media (max-width: 768px) {
   main {
