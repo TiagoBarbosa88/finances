@@ -10,11 +10,13 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { FilterDataService } from 'src/app/shared/services/filter-data.service';
 import { MenssageriaService } from 'src/app/shared/services/menssageria.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
-  styleUrls: ['./transaction-list.component.css']
+  styleUrls: ['./transaction-list.component.css'],
 })
 export class TransactionListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -39,7 +41,8 @@ export class TransactionListComponent implements AfterViewInit, OnInit {
     private msg: MenssageriaService,
     private breakpointObserver: BreakpointObserver,
     private filterDataService: FilterDataService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -132,5 +135,11 @@ export class TransactionListComponent implements AfterViewInit, OnInit {
 
   navigateToHome(): void {
     this.router.navigate(['/home']);
+  }
+
+  fetchTransactions() {
+    this.http.get(environment.transactionUrl).subscribe((data) => {
+      console.log(data);
+    });
   }
 }

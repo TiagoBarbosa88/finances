@@ -1,7 +1,7 @@
 const PROXY_CONFIG = [
   {
     context: ['/api'],
-    target: 'http://localhost:8080/',
+    target: 'https://backend-finances-ms-transactions.onrender.com/',
     secure: false,
     logLevel: 'debug'
   }

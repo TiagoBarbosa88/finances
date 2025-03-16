@@ -27,6 +27,8 @@ import { TransactionEditComponent } from './features/dashboard/transaction-edit/
 import { TransactionDataComponent } from './features/dashboard/transaction-data/transaction-data.component';
 import { TransactionFilterComponent } from './features/dashboard/transaction-filter/transaction-filter.component';
 import { SummaryComponent } from './features/summary/summary/summary.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 registerLocaleData(localePt);
 @NgModule({
@@ -76,7 +78,8 @@ registerLocaleData(localePt);
         },
       }
     },
-    TransactionService
+    TransactionService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
