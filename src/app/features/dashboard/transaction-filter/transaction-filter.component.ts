@@ -49,8 +49,8 @@ export class TransactionFilterComponent implements OnInit {
   date = new FormControl(moment());
 
   // Limitar as datas exibidas
-  startDate = moment(); // Começa no mês e ano atuais
-  minDate = moment(); // Mínimo é o mês e ano atuais
+  startDate = moment(["2025,01,01"]); // Começa no mês e ano atuais
+  minDate = moment(["2025,01,01"]); // Mínimo é o mês e ano atuais
   maxDate = moment().add(5, 'years'); // Máximo é 5 anos no futuro
 
   constructor(
