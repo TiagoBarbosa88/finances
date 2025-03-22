@@ -146,8 +146,7 @@ margin-bottom: 5px;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
     border-radius: 8px; /* Adiciona bordas arredondadas para um visual mais elegante */
-  };
- 
+  }
 
   .header-center {
     font-size: 1.5em;
