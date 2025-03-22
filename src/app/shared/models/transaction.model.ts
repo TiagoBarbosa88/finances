@@ -2,7 +2,7 @@
 //   id?: number;
 //   title: string;
 //   value: number;
-//   type: 'receita' | 'despesa'; 
+//   type: 'receita' | 'despesa';
 //   categoryId: number;
 //   category_name: string;
 //   date: string;
