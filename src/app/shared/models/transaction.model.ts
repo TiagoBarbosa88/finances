@@ -21,5 +21,5 @@ export interface Transaction {
     id: string;
     categoryName: string;
   };
-  styleClass?: string; // Este campo é específico para o frontend
+  styleClass?: string;
 }
