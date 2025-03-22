@@ -2,7 +2,7 @@
 //   id?: number;
 //   title: string;
 //   value: number;
-//   type: 'receita' | 'despesa'; 
+//   type: 'receita' | 'despesa';
 //   categoryId: number;
 //   category_name: string;
 //   date: string;
@@ -21,5 +21,5 @@ export interface Transaction {
     id: string;
     categoryName: string;
   };
-  styleClass?: string; // Este campo é específico para o frontend
+  styleClass?: string;
 }
