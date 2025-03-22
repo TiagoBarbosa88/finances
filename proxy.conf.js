@@ -1,10 +1,12 @@
 const PROXY_CONFIG = [
   {
-    context: ['/api'],
-    target: 'https://backend-finances-ms-transactions.onrender.com/',
+    context: ["/api"],
+    target: "https://backend-finances-ms-transactions.onrender.com/",
     secure: false,
-    logLevel: 'debug'
-  }
+    changeOrigin: true,
+
+    logLevel: "debug",
+  },
 ];
 
-module.exports = PROXY_CONFIG; 
+module.exports = PROXY_CONFIG;
