@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Transaction } from '../models/transaction.model';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+
+  const headers = new HttpHeaders({
+  'Cache-Control': 'no-cache',
+  'Pragma': 'no-cache'
+});
 
 @Injectable({
   providedIn: 'root'
@@ -26,13 +31,16 @@ export class TransactionService {
     if (this.cache && this.cacheTimestamp && (Date.now() - this.cacheTimestamp < this.cacheDuration)) {
       this.transactionsSubject.next(this.cache);
     } else {
-      this.http.get<Transaction[]>(this.transactionsApi).pipe(
-        tap(transactions => { 
-          this.cache = transactions;
-          this.cacheTimestamp = Date.now();
-          this.transactionsSubject.next(transactions);
-        })
-      ).subscribe();
+      this.http
+        .get<Transaction[]>(this.transactionsApi, { headers })
+        .pipe(
+          tap((transactions) => {
+            this.cache = transactions;
+            this.cacheTimestamp = Date.now();
+            this.transactionsSubject.next(transactions);
+          })
+        )
+        .subscribe();
     }
   }
 
@@ -41,13 +49,16 @@ export class TransactionService {
   }
 
   refreshTransactions(): void {
-    this.http.get<Transaction[]>(this.transactionsApi).pipe(
-      tap(transactions => { 
-        this.cache = transactions;
-        this.cacheTimestamp = Date.now();
-        this.transactionsSubject.next(transactions);
-      })
-    ).subscribe();
+    this.http
+      .get<Transaction[]>(this.transactionsApi, { headers })
+      .pipe(
+        tap((transactions) => {
+          this.cache = transactions;
+          this.cacheTimestamp = Date.now();
+          this.transactionsSubject.next(transactions);
+        })
+      )
+      .subscribe();
   }
 
   createTransaction(transaction: Transaction): Observable<Transaction> {
