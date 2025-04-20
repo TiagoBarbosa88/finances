@@ -1,5 +1,7 @@
 export const environment = {
   production: true,
-  transactionUrl: '/api/transactions',
-  categoryUrl: '/api/categories',
+  transactionUrl:
+    'https://backend-finances-ms-transactions.onrender.com/transactions',
+  categoryUrl:
+    'https://backend-finances-ms-transactions.onrender.com/categories',
 };

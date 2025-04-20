@@ -1,5 +1,5 @@
 {
-  "/api": {
+  "/": {
     "target": "https://backend-finances-ms-transactions.onrender.com/",
     "secure": false,
     "changeOrigin": true,
