@@ -1,22 +1,11 @@
 {
-  "/transactions": {
+  "/": {
     "target": "https://backend-finances-ms-transactions.onrender.com/",
     "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
-  
-  "/categories": {
-    "target": "https://backend-finances-ms-transactions.onrender.com/",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
-  },
-
-  "/api/users": {
-    "target": "https://backend-finances-ms-user.onrender.com/",
-    "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/": ""
+      },
+      "logLevel": "debug"
+    }
   }
-}
