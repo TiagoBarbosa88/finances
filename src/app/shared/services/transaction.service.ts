@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Transaction } from '../models/transaction.model';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Transaction } from '../models/transaction.model';
 
-  const headers = new HttpHeaders({
+const headers = new HttpHeaders({
   'Cache-Control': 'no-cache',
-  'Pragma': 'no-cache'
+  Pragma: 'no-cache',
 });
 
 @Injectable({

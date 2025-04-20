@@ -1,7 +1,17 @@
 {
-  "/": {
-    "target": "https://backend-finances-ms-transactions.onrender.com",
+  "/api": {
+    "target": "https://backend-finances-ms-transactions.onrender.com/",
     "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "logLevel": "debug"
+  },
+  "/api/users": {
+    "target": "https://backend-finances-ms-user.onrender.com/",
+    "secure": false,
+    "changeOrigin": true,
     "logLevel": "debug"
   }
 }
