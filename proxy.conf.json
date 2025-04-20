@@ -1,11 +1,11 @@
 {
-  "/": {
-    "target": "https://backend-finances-ms-transactions.onrender.com/",
+  "/api": {
+    "target": "https://backend-finances-ms-transactions.onrender.com",
     "secure": false,
-      "changeOrigin": true,
-      "pathRewrite": {
-        "^/": ""
-      },
-      "logLevel": "debug"
-    }
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/": ""
+    },
+    "logLevel": "debug"
   }
+}
