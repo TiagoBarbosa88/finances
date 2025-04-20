@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  transactionUrl: '/api/transactions',
-  categoryUrl: '/api/categories',
+  transactionUrl: '/transactions',
+  categoryUrl: '/categories',
   userUrl: '/api/users',
 };
