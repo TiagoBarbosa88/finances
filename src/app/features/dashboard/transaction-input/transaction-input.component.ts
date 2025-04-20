@@ -40,6 +40,8 @@ export class TransactionInputComponent implements OnInit {
     // Carregar as categorias quando o componente for inicializado
     this.categoryService.getCategories().subscribe(categories => {
       this.categories = categories;
+
+      console.log(categories);
     })
 
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
