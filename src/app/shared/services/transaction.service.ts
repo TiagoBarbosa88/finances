@@ -5,10 +5,11 @@ import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Transaction } from '../models/transaction.model';
 
-const headers = new HttpHeaders({
-  'Cache-Control': 'no-cache',
-  Pragma: 'no-cache',
-});
+ const headers = new HttpHeaders({
+   'Content-Type': 'application/json',
+   'Cache-Control': 'no-cache',
+   Pragma: 'no-cache',
+ });
 
 @Injectable({
   providedIn: 'root',
@@ -67,26 +68,26 @@ export class TransactionService {
 
   createTransaction(transaction: Transaction): Observable<Transaction> {
     return this.http
-      .post<Transaction>(this.transactionsApi, transaction)
+      .post<Transaction>(this.transactionsApi, transaction, { headers })
       .pipe(tap(() => this.refreshTransactions()));
   }
 
   readTransactionById(id: string): Observable<Transaction> {
     const url = `${this.transactionsApi}/${id}`;
-    return this.http.get<Transaction>(url);
+    return this.http.get<Transaction>(url, { headers });
   }
 
   updateTransaction(transaction: Transaction): Observable<Transaction> {
     const url = `${this.transactionsApi}/${transaction.id}`;
     return this.http
-      .put<Transaction>(url, transaction)
+      .put<Transaction>(url, transaction, { headers })
       .pipe(tap(() => this.refreshTransactions()));
   }
 
   deleteTransaction(id: string): Observable<Transaction> {
     const url = `${this.transactionsApi}/${id}`;
     return this.http
-      .delete<Transaction>(url)
+      .delete<Transaction>(url, { headers })
       .pipe(tap(() => this.refreshTransactions()));
   }
 }
