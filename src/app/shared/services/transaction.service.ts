@@ -15,7 +15,7 @@ import { Transaction } from '../models/transaction.model';
   providedIn: 'root',
 })
 export class TransactionService {
-  private transactionsApi = environment.transactionUrl;
+  private transactionsApi = `${environment.transactionUrl}`;
 
   private transactionsSubject = new BehaviorSubject<Transaction[]>([]);
   transactions$ = this.transactionsSubject.asObservable();
