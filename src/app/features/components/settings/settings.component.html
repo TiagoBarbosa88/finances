@@ -1,0 +1,70 @@
+<div class="page-container">
+  <mat-card class="settings-card">
+    <mat-card-header>
+      <div mat-card-avatar class="settings-avatar">
+        <mat-icon>settings</mat-icon>
+      </div>
+      <mat-card-title>Configurações</mat-card-title>
+      <mat-card-subtitle>Personalize sua experiência</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="settings-section">
+        <h3>Preferências</h3>
+        
+        <div class="setting-item">
+          <mat-slide-toggle [(ngModel)]="settings.notifications">
+            Notificações
+          </mat-slide-toggle>
+          <span class="setting-description">Receber alertas sobre suas transações</span>
+        </div>
+
+        <div class="setting-item">
+          <mat-slide-toggle [(ngModel)]="settings.darkMode" (change)="onThemeChange()">
+            Modo Escuro
+          </mat-slide-toggle>
+          <span class="setting-description">Alterar para tema escuro</span>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="settings-section">
+        <h3>Regionalização</h3>
+        
+        <div class="setting-item">
+          <mat-form-field appearance="outline">
+            <mat-label>Idioma</mat-label>
+            <mat-select [(ngModel)]="settings.language">
+              <mat-option *ngFor="let lang of languages" [value]="lang.code">
+                {{ lang.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="setting-item">
+          <mat-form-field appearance="outline">
+            <mat-label>Moeda</mat-label>
+            <mat-select [(ngModel)]="settings.currency">
+              <mat-option *ngFor="let curr of currencies" [value]="curr.code">
+                {{ curr.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onSave()">
+        <mat-icon>save</mat-icon>
+        Salvar Alterações
+      </button>
+      <button mat-stroked-button (click)="onReset()">
+        <mat-icon>restore</mat-icon>
+        Restaurar Padrões
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div> 

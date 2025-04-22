@@ -1,9 +1,66 @@
-html, body {
+/* Tema claro (padrão) */
+:root {
+  --background-color: #f5f5f5;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --text-secondary: #666666;
+  --primary-color: #304090;
+  --accent-color: #5c6bc0;
+  --border-color: #e0e0e0;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --header-bg: #304090;
+  --footer-bg: #304090;
+  --menu-hover: rgba(0, 0, 0, 0.04);
+  --input-bg: #ffffff;
+  --input-text: #333333;
+  --card-text: #333333;
+  --empty-text: #666666;
+  --table-text: #333333;
+  --table-header: #666666;
+  --paginator-text: #333333;
+  --header-text: #ffffff;
+  --logo-text: #ffffff;
+  --theme-icon-color: #ffffff;
+  --link-color: #304090;
+}
+
+/* Tema escuro */
+.dark-theme {
+  --background-color: #1e1e1e;
+  --card-background: #2d2d2d;
+  --text-color: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --primary-color: #4a4a4a;
+  --accent-color: #5a5a5a;
+  --border-color: #404040;
+  --success-color: #2fb344;
+  --error-color: #ef5350;
+  --header-bg: #2d2d2d;
+  --footer-bg: #2d2d2d;
+  --menu-hover: rgba(255, 255, 255, 0.08);
+  --input-bg: #363636;
+  --input-text: #e0e0e0;
+  --card-text: #e0e0e0;
+  --empty-text: #b0b0b0;
+  --table-text: #e0e0e0;
+  --table-header: #b0b0b0;
+  --paginator-text: #b0b0b0;
+  --header-text: #e0e0e0;
+  --logo-text: #ffffff;
+  --theme-icon-color: #e0e0e0;
+  --link-color: #808080;
+}
+
+/* Estilos base */
+html,
+body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  display: flex;
-  flex-direction: column; 
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
 }
 
 * {
@@ -13,7 +70,6 @@ html, body {
 
 .container-fluid {
   height: 100%;
-  display: flex;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -72,4 +128,185 @@ app-transaction-input {
 .mat-snack-bar-container.msg-error {
   background-color: rgb(231, 34, 27) !important;
   color: #fff !important;
+}
+
+/* Estilos globais */
+.page-container {
+  padding: 32px 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 24px; /* Espaço adicional após o header */
+}
+
+@media (max-width: 600px) {
+  .page-container {
+    padding: 16px;
+    margin-top: 16px;
+  }
+}
+
+/* Estilos de cartões e containers */
+mat-card {
+  background-color: var(--card-background) !important;
+  color: var(--card-text) !important;
+}
+
+mat-card-subtitle {
+  color: var(--text-secondary) !important;
+}
+
+.header-toolbar {
+  background-color: var(--header-bg) !important;
+  color: var(--header-text) !important;
+}
+
+footer {
+  background-color: var(--footer-bg) !important;
+}
+
+/* Estilos de formulários */
+mat-form-field {
+  color: var(--text-color) !important;
+}
+
+.mat-input-element {
+  color: var(--input-text) !important;
+}
+
+/* Mensagens de sucesso e erro */
+.msg-success {
+  background-color: var(--success-color) !important;
+  color: #ffffff !important;
+}
+
+.msg-error {
+  background-color: var(--error-color) !important;
+  color: #ffffff !important;
+}
+
+/* Estilos de formulários */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: var(--border-color) !important;
+}
+
+.mat-form-field-label {
+  color: var(--text-secondary) !important;
+}
+
+mat-form-field.mat-focused .mat-form-field-label {
+  color: var(--primary-color) !important;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: var(--primary-color) !important;
+}
+
+/* Inputs e selects */
+input,
+select,
+textarea {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+}
+
+/* Tabelas */
+.mat-table {
+  background-color: var(--card-background) !important;
+  color: var(--card-text) !important;
+}
+
+.mat-header-cell {
+  color: var(--table-header) !important;
+  font-weight: 500 !important;
+}
+
+.mat-cell {
+  color: var(--table-text) !important;
+}
+
+/* Mensagem de lista vazia */
+.empty-message {
+  color: var(--empty-text);
+  text-align: center;
+  padding: 20px;
+  font-size: 1.1rem;
+}
+
+/* Paginador */
+.mat-paginator {
+  background-color: var(--card-background) !important;
+}
+
+.mat-paginator-container {
+  color: var(--paginator-text) !important;
+}
+
+.mat-select-value,
+.mat-select-arrow,
+.mat-paginator-page-size-label {
+  color: var(--paginator-text) !important;
+}
+
+/* Botões */
+.mat-button,
+.mat-raised-button,
+.mat-stroked-button {
+  color: var(--text-color) !important;
+}
+
+.mat-button.mat-primary,
+.mat-raised-button.mat-primary {
+  background-color: var(--primary-color);
+  color: white !important;
+}
+
+/* Header e Logo */
+.brand-name {
+  color: var(--logo-text) !important;
+}
+
+.logo {
+  color: var(--logo-text) !important;
+}
+
+/* Botões Primary */
+.mat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-flat-button.mat-primary {
+  background-color: var(--primary-color) !important;
+  color: var(--header-text) !important;
+}
+
+.mat-button.mat-primary:hover,
+.mat-raised-button.mat-primary:hover,
+.mat-flat-button.mat-primary:hover {
+  background-color: var(--accent-color) !important;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  margin-left: auto;
+  color: var(--theme-icon-color) !important;
+}
+
+.theme-toggle mat-icon {
+  color: var(--theme-icon-color) !important;
+}
+
+/* Links e elementos com a cor #384fa9 */
+a:not(.mat-button):not(.mat-raised-button):not(.mat-menu-item) {
+  color: var(--link-color) !important;
+}
+
+.mat-button-wrapper {
+  color: inherit;
+}
+
+/* Outros elementos que possam usar a cor #384fa9 */
+.primary-text {
+  color: var(--link-color) !important;
+}
+
+.primary-bg {
+  background-color: var(--primary-color) !important;
 }

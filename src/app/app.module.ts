@@ -1,74 +1,47 @@
+import { registerLocaleData } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import localePt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
-import localePt from '@angular/common/locales/pt';
-import { registerLocaleData } from '@angular/common';
-
+import { AuthModule } from './core/auth/auth.module';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { FeaturesModule } from './features/features.module';
 import { MaterialModule } from './shared/material.module';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { HeaderComponent } from './features/components/header/header.component';
-import { FooterComponent } from './features/components/footer/footer.component';
-import { TransactionBalanceComponent } from './features/dashboard/transaction-balance/transaction-balance.component';
-import { HomeComponent } from './features/components/home/home.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import {
-  MatNativeDateModule,
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
 import { TransactionService } from './shared/services/transaction.service';
-import { TransactionInputComponent } from './features/dashboard/transaction-input/transaction-input.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { TransactionListComponent } from './features/dashboard/transaction-list/transaction-list.component';
-import { TransactionEditComponent } from './features/dashboard/transaction-edit/transaction-edit.component';
-import { TransactionDataComponent } from './features/dashboard/transaction-data/transaction-data.component';
-import { TransactionFilterComponent } from './features/dashboard/transaction-filter/transaction-filter.component';
-import { SummaryComponent } from './features/summary/summary/summary.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 registerLocaleData(localePt);
+
 @NgModule({
   declarations: [
-    AppComponent,
-    DashboardComponent,
-    HeaderComponent,
-    FooterComponent,
-    TransactionBalanceComponent,
-    HomeComponent,
-    TransactionInputComponent,
-    TransactionListComponent,
-    TransactionEditComponent,
-    TransactionDataComponent,
-    TransactionFilterComponent,
-    SummaryComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
     HttpClientModule,
     MatNativeDateModule,
+    MaterialModule,
+    AppRoutingModule,
+    AuthModule,
+    FeaturesModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
-    {
-      provide: LOCALE_ID,
-      useValue: 'pt-BR',
-    },
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
     {
       provide: MAT_DATE_FORMATS,
       useValue: {
@@ -83,8 +56,9 @@ registerLocaleData(localePt);
         },
       },
     },
-    TransactionService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    TransactionService
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
