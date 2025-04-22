@@ -1,0 +1,23 @@
+protection:
+  # Requer pelo menos uma aprovação de review
+  required_pull_request_reviews:
+    required_approving_review_count: 1
+    dismiss_stale_reviews: true
+    require_code_owner_reviews: false
+
+  # Requer status checks passarem antes do merge
+  required_status_checks:
+    strict: true
+    contexts:
+      - check_conflicts
+      - build_and_test
+      - lint
+
+  # Não permite push direto na main
+  enforce_admins: true
+
+  # Não permite deletar a branch
+  allow_deletions: false
+
+  # Não permite force push
+  allow_force_pushes: false
