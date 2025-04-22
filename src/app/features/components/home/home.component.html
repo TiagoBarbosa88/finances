@@ -14,64 +14,112 @@
     <mat-tab-group>
       <!-- Aba de Login -->
       <mat-tab label="Login">
-        <form class="form" (ngSubmit)="onLogin()">
-          <mat-form-field appearance="outline" class="full-width" hideRequiredMarker="true">
-            <mat-label> 
-              <i class="material-icons">mail</i>
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              <mat-icon>mail</mat-icon>
               Email
             </mat-label>
-            <input matInput type="email" required [(ngModel)]="loginData.email" name="email" />
+            <input matInput type="email" formControlName="email" placeholder="Digite seu email">
+            <mat-error *ngIf="loginForm.get('email')?.errors?.['required']">
+              Email é obrigatório
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('email')?.errors?.['email']">
+              Digite um email válido
+            </mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width" hideRequiredMarker="true">
-            <mat-label> 
-              <i class="material-icons">lock</i>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              <mat-icon>lock</mat-icon>
               Senha
             </mat-label>
-            <input matInput type="password" required [(ngModel)]="loginData.password" name="password" />
+            <input matInput type="password" formControlName="password" placeholder="Digite sua senha">
+            <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">
+              Senha é obrigatória
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('password')?.errors?.['minlength']">
+              A senha deve ter pelo menos 6 caracteres
+            </mat-error>
           </mat-form-field>
 
-          <button mat-raised-button color="primary" class="full-width">Entrar</button>
-          <button mat-button class="forgot-password">Esqueci minha senha</button>
+          <div *ngIf="error" class="error-message">
+            {{ error }}
+          </div>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || loading"
+            class="full-width">
+            <mat-spinner diameter="20" *ngIf="loading" class="button-spinner"></mat-spinner>
+            <span *ngIf="!loading">Entrar</span>
+          </button>
         </form>
       </mat-tab>
 
       <!-- Aba de Cadastro -->
       <mat-tab label="Cadastro">
-        <form class="form" (ngSubmit)="onRegister()">
-          <mat-form-field appearance="outline" class="full-width" hideRequiredMarker="true">
+        <form class="form" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+          <mat-form-field appearance="outline" class="full-width">
             <mat-label>
-              <i class="material-icons">badge</i>
+              <mat-icon>person</mat-icon>
               Nome
             </mat-label>
-            <input matInput type="text" required [(ngModel)]="registerData.name" name="name" />
+            <input matInput formControlName="name" placeholder="Digite seu nome">
+            <mat-error *ngIf="registerForm.get('name')?.errors?.['required']">
+              Nome é obrigatório
+            </mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width" hideRequiredMarker="true">
-            <mat-label> 
-              <i class="material-icons">mail</i>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              <mat-icon>mail</mat-icon>
               Email
             </mat-label>
-            <input matInput type="email" required [(ngModel)]="registerData.email" name="email" />
+            <input matInput type="email" formControlName="email" placeholder="Digite seu email">
+            <mat-error *ngIf="registerForm.get('email')?.errors?.['required']">
+              Email é obrigatório
+            </mat-error>
+            <mat-error *ngIf="registerForm.get('email')?.errors?.['email']">
+              Digite um email válido
+            </mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width" hideRequiredMarker="true">
-            <mat-label> 
-              <i class="material-icons">lock</i>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              <mat-icon>lock</mat-icon>
               Senha
             </mat-label>
-            <input matInput type="password" required [(ngModel)]="registerData.password" name="password" />
+            <input matInput type="password" formControlName="password" placeholder="Digite sua senha">
+            <mat-error *ngIf="registerForm.get('password')?.errors?.['required']">
+              Senha é obrigatória
+            </mat-error>
+            <mat-error *ngIf="registerForm.get('password')?.errors?.['minlength']">
+              A senha deve ter pelo menos 6 caracteres
+            </mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width" hideRequiredMarker="true">
-            <mat-label> 
-              <i class="material-icons">lock</i>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>
+              <mat-icon>lock</mat-icon>
               Confirmar Senha
             </mat-label>
-            <input matInput type="password" required [(ngModel)]="registerData.confirmPassword" name="confirmPassword" />
+            <input matInput type="password" formControlName="confirmPassword" placeholder="Confirme sua senha">
+            <mat-error *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">
+              Confirmação de senha é obrigatória
+            </mat-error>
+            <mat-error *ngIf="registerForm.errors?.['mismatch']">
+              As senhas não coincidem
+            </mat-error>
           </mat-form-field>
 
-          <button mat-raised-button color="primary" class="full-width">Cadastrar</button>
+          <div *ngIf="error" class="error-message">
+            {{ error }}
+          </div>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid || loading"
+            class="full-width">
+            <mat-spinner diameter="20" *ngIf="loading" class="button-spinner"></mat-spinner>
+            <span *ngIf="!loading">Cadastrar</span>
+          </button>
         </form>
       </mat-tab>
     </mat-tab-group>
