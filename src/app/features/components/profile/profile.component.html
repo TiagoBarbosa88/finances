@@ -1,0 +1,46 @@
+<div class="page-container">
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <div mat-card-avatar class="profile-avatar">
+        <mat-icon>account_circle</mat-icon>
+      </div>
+      <mat-card-title>Meu Perfil</mat-card-title>
+      <mat-card-subtitle>Gerencie suas informações pessoais</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="profile-info">
+        <div class="info-group">
+          <label>Nome</label>
+          <p>{{ user.name }}</p>
+        </div>
+
+        <div class="info-group">
+          <label>Email</label>
+          <p>{{ user.email }}</p>
+        </div>
+
+        <div class="info-group">
+          <label>Membro desde</label>
+          <p>{{ user.joinDate | date:'longDate' }}</p>
+        </div>
+
+        <div class="info-group">
+          <label>Total de Transações</label>
+          <p>{{ user.totalTransactions }}</p>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary">
+        <mat-icon>edit</mat-icon>
+        Editar Perfil
+      </button>
+      <button mat-stroked-button color="warn">
+        <mat-icon>lock</mat-icon>
+        Alterar Senha
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div> 
