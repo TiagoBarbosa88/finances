@@ -1,12 +1,40 @@
-mat-toolbar {
-  display: flex;
-  justify-content: center;
+footer {
   background-color: #304090;
   color: #eeeaea;
+  padding: 16px 0;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.footer-content {
   font-size: 14px;
 }
 
-.logo {
-  margin-left: 5px;
-  font-family: 'Roboto', sans-serif;
+.footer-content a {
+  color: #eeeaea;
+  text-decoration: none;
+  margin: 0 8px;
+  transition: color 0.2s;
+}
+
+.footer-content a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .footer-content {
+    font-size: 12px;
+  }
 }

@@ -9,3 +9,124 @@
 .logo {
   color: aliceblue;
 }
+
+.header-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 64px;
+  background-color: var(--header-bg);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 100%;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-name {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.nav-links a.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-links mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.menu-button,
+.user-menu-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-color);
+}
+
+.theme-toggle {
+  margin-left: auto;
+  color: var(--text-color);
+}
+
+::ng-deep .mat-menu-panel {
+  background-color: var(--card-background) !important;
+}
+
+::ng-deep .mat-menu-item {
+  color: var(--text-color) !important;
+}
+
+::ng-deep .mat-menu-item .mat-icon {
+  color: var(--text-color) !important;
+}
+
+::ng-deep .mat-menu-item:hover:not([disabled]) {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+::ng-deep .mat-divider {
+  border-color: var(--border-color) !important;
+}
+
+@media (max-width: 960px) {
+  .nav-links span,
+  .menu-button span,
+  .user-menu-button span {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-toolbar {
+    height: 56px;
+  }
+
+  .brand-name span {
+    display: none;
+  }
+
+  .header-container {
+    padding: 0 8px;
+  }
+}
