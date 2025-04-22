@@ -7,7 +7,11 @@
 }
 
 .logo {
-  color: aliceblue;
+  color: #ffffff !important;
+}
+
+.logo mat-icon {
+  color: #ffffff !important;
 }
 
 .header-toolbar {
@@ -39,11 +43,16 @@
 
 .brand-name {
   text-decoration: none;
-  color: var(--text-color);
   font-size: 1.2rem;
   font-weight: 500;
   display: flex;
   align-items: center;
+  color: #ffffff !important;
+}
+
+.brand-text {
+  color: #ffffff !important;
+  font-weight: 500;
 }
 
 .header-right {
@@ -64,6 +73,7 @@
   padding: 4px 12px;
   border-radius: 4px;
   transition: background-color 0.2s;
+  color: #ffffff !important;
 }
 
 .nav-links a.active {
@@ -74,6 +84,7 @@
   font-size: 20px;
   width: 20px;
   height: 20px;
+  color: #ffffff !important;
 }
 
 .menu-button,
@@ -81,12 +92,21 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  color: var(--text-color);
+  color: #ffffff !important;
+}
+
+.menu-button mat-icon,
+.user-menu-button mat-icon {
+  color: #ffffff !important;
 }
 
 .theme-toggle {
   margin-left: auto;
-  color: var(--text-color);
+  color: #ffffff !important;
+}
+
+.theme-toggle mat-icon {
+  color: #ffffff !important;
 }
 
 ::ng-deep .mat-menu-panel {
