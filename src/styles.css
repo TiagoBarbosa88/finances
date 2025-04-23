@@ -76,13 +76,12 @@ body {
 }
 
 .container {
-  flex: 1; /* Faz o container principal ocupar o espaço disponível */
+  flex: 1;
   width: 95%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  /* pad: 20px; */
-  gap: 10px; /* Define o espaçamento entre os componentes */
+  gap: 10px;
 }
 
 .main-content {
@@ -91,34 +90,29 @@ body {
   flex-direction: column;
   width: 95%;
   margin: 0 auto;
-  /* padding: 20px; */
-  gap: 10px; /* Define o espaçamento entre os componentes */
+  gap: 10px;
+  padding-bottom: 80px; /* Espaço para o footer */
 }
 
 .footer {
-  background-color: #e0f7fa;
-  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  margin-top: auto; /* Garante que o footer fique no fim da página */
+  background-color: var(--footer-bg);
+  color: var(--header-text);
+  text-align: center;
+  padding: 16px 0;
+  z-index: 1000;
 }
 
 app-transaction-balance {
-  margin-bottom: 5px; /* Reduz o espaço abaixo */
+  margin-bottom: 5px;
 }
 
 app-transaction-input {
-  margin-top: 5px; /* Reduz o espaço acima */
+  margin-top: 5px;
 }
-
-/* .msg-success {
-  background-color: #28a745 !important;
-  color: #fff !important;
-}
-
-.msg-error {
-  background-color: rgb(231, 34, 27) !important;
-  color: #fff !important;
-} */
 
 .mat-snack-bar-container.msg-success {
   background-color: #28a745 !important;
@@ -135,7 +129,7 @@ app-transaction-input {
   padding: 32px 16px;
   max-width: 800px;
   margin: 0 auto;
-  margin-top: 24px; /* Espaço adicional após o header */
+  margin-top: 24px;
 }
 
 @media (max-width: 600px) {
@@ -170,42 +164,6 @@ mat-form-field {
 }
 
 .mat-input-element {
-  color: var(--input-text) !important;
-}
-
-/* Mensagens de sucesso e erro */
-.msg-success {
-  background-color: var(--success-color) !important;
-  color: #ffffff !important;
-}
-
-.msg-error {
-  background-color: var(--error-color) !important;
-  color: #ffffff !important;
-}
-
-/* Estilos de formulários */
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  color: var(--border-color) !important;
-}
-
-.mat-form-field-label {
-  color: var(--text-secondary) !important;
-}
-
-mat-form-field.mat-focused .mat-form-field-label {
-  color: var(--primary-color) !important;
-}
-
-.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-  color: var(--primary-color) !important;
-}
-
-/* Inputs e selects */
-input,
-select,
-textarea {
-  background-color: var(--input-bg) !important;
   color: var(--input-text) !important;
 }
 
