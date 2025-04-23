@@ -7,16 +7,16 @@
   --accent-color: #ff4081;
   --accent-lighter: #ff6b9f;
   --accent-darker: #c60055;
-  
+
   --background-color: #f5f5f5;
   --card-background: #ffffff;
   --surface-color: #ffffff;
   --border-color: #e0e0e0;
-  
+
   --text-color: #333333;
   --text-secondary: #666666;
   --text-disabled: #999999;
-  
+
   --success-color: #4caf50;
   --warning-color: #ff9800;
   --error-color: #f44336;
@@ -24,10 +24,10 @@
 
   --header-bg: var(--primary-color);
   --header-text: #ffffff;
-  
+
   --shadow-color: rgba(0, 0, 0, 0.1);
   --hover-color: rgba(0, 0, 0, 0.05);
-  
+
   /* Transições */
   --transition-speed: 0.3s;
 }
@@ -40,16 +40,16 @@
   --accent-color: #ff4081;
   --accent-lighter: #ff6b9f;
   --accent-darker: #c60055;
-  
+
   --background-color: #121212;
   --card-background: #1e1e1e;
   --surface-color: #242424;
   --border-color: #333333;
-  
+
   --text-color: #ffffff;
   --text-secondary: #b0b0b0;
   --text-disabled: #707070;
-  
+
   --success-color: #66bb6a;
   --warning-color: #ffa726;
   --error-color: #ef5350;
@@ -57,19 +57,21 @@
 
   --header-bg: #1a1a1a;
   --header-text: #ffffff;
-  
+
   --shadow-color: rgba(0, 0, 0, 0.3);
   --hover-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Estilos base */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
-  transition: background-color var(--transition-speed), color var(--transition-speed);
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
 }
 
 * {
@@ -100,19 +102,7 @@ html, body {
   width: 95%;
   margin: 0 auto;
   gap: 10px;
-  padding-bottom: 80px; /* Espaço para o footer */
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--footer-bg);
-  color: var(--header-text);
-  text-align: center;
-  padding: 16px 0;
-  z-index: 1000;
+  padding-bottom: 20px;
 }
 
 app-transaction-balance {
@@ -169,10 +159,6 @@ mat-card-subtitle {
 .header-toolbar {
   background-color: var(--header-bg) !important;
   color: var(--header-text) !important;
-}
-
-footer {
-  background-color: var(--footer-bg) !important;
 }
 
 /* Estilos de formulários */
@@ -391,7 +377,7 @@ a:not(.mat-button):not(.mat-raised-button):not(.mat-menu-item) {
     margin: 8px !important;
     padding: 12px !important;
   }
-  
+
   .mat-table {
     padding: 0 8px !important;
   }
