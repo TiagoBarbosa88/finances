@@ -1,10 +1,10 @@
 <mat-toolbar color="primary" class="header-toolbar">
   <div class="header-container">
     <div class="header-left">
-      <button mat-icon-button class="logo" routerLink="/">
+      <button mat-icon-button class="logo" (click)="navigateToHome()">
         <mat-icon>account_balance</mat-icon>
       </button>
-      <a routerLink="/" class="brand-name">
+      <a (click)="navigateToHome()" class="brand-name" style="cursor: pointer;">
         <span class="brand-text">Controle Financeiro</span>
       </a>
     </div>

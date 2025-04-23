@@ -50,6 +50,14 @@ export class HeaderComponent {
     return this.currentRoute.includes('/summary');
   }
 
+  navigateToHome(): void {
+    if (this.isAuthenticated) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.router.navigate(['/']);
+    }
+  }
+
   onLogoutClick(): void {
     this.authService.logout();
     this.router.navigate(['/']);

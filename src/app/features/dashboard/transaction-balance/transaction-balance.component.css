@@ -24,10 +24,9 @@
   /* background: #f9f9f9; */
   border: 1px solid #85888a;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease;
 
   &:hover {
-    transform: scale(1.02);
     box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
   }
 
@@ -71,7 +70,7 @@
 }
 
 .icon-positive {
-  color: #4caf50; 
+  color: #4caf50;
 }
 
 .icon-negative {
@@ -79,11 +78,11 @@
 }
 
 .icon-neutral {
-  color: #ffc107; 
+  color: #ffc107;
 }
 
 .icon-saldo {
-  color: #63b2f4; 
+  color: #63b2f4;
 }
 
 mat-card-title {
@@ -98,4 +97,3 @@ mat-card-title {
   font-weight: 600;
   margin: 0;
 }
-
