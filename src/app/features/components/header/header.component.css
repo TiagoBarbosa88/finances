@@ -7,12 +7,16 @@
 }
 
 .logo {
-  color: var(--header-text) !important;
-  transition: transform var(--transition-speed);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--logo-text);
+  transition: transform 0.2s ease;
 }
 
 .logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .logo mat-icon {
@@ -91,7 +95,7 @@
 }
 
 .nav-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;

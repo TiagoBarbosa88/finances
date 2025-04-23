@@ -9,14 +9,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FooterComponent } from './features/components/footer/footer.component';
-import { HeaderComponent } from './features/components/header/header.component';
+import { FeaturesModule } from './features/features.module';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent
-  ],
   imports: [
     CommonModule,
     RouterTestingModule,
@@ -27,7 +22,8 @@ import { HeaderComponent } from './features/components/header/header.component';
     MatIconModule,
     MatTabsModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    FeaturesModule
   ],
   exports: [
     CommonModule,
@@ -40,8 +36,7 @@ import { HeaderComponent } from './features/components/header/header.component';
     MatTabsModule,
     MatDialogModule,
     MatMenuModule,
-    HeaderComponent,
-    FooterComponent
+    FeaturesModule
   ]
 })
 export class TestModule { } 
