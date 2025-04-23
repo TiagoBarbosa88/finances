@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,34 +11,72 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FeaturesModule } from './features/features.module';
+import { AppComponent } from './app.component';
+import { FooterComponent } from './features/components/footer/footer.component';
+import { HeaderComponent } from './features/components/header/header.component';
+import { HomeComponent } from './features/components/home/home.component';
+import { TransactionBalanceComponent } from './features/dashboard/transaction-balance/transaction-balance.component';
+import { TransactionDataComponent } from './features/dashboard/transaction-data/transaction-data.component';
+import { TransactionEditComponent } from './features/dashboard/transaction-edit/transaction-edit.component';
+import { TransactionFilterComponent } from './features/dashboard/transaction-filter/transaction-filter.component';
+import { TransactionListComponent } from './features/dashboard/transaction-list/transaction-list.component';
+import { SummaryComponent } from './features/summary/summary/summary.component';
+import { MaterialModule } from './shared/material.module';
 
 @NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    TransactionListComponent,
+    TransactionEditComponent,
+    TransactionBalanceComponent,
+    TransactionDataComponent,
+    TransactionFilterComponent,
+    SummaryComponent
+  ],
   imports: [
     CommonModule,
     RouterTestingModule,
     HttpClientTestingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
     MatDialogModule,
-    MatMenuModule,
-    FeaturesModule
+    MatMenuModule
   ],
   exports: [
     CommonModule,
     RouterTestingModule,
     HttpClientTestingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
     MatDialogModule,
     MatMenuModule,
-    FeaturesModule
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    TransactionListComponent,
+    TransactionEditComponent,
+    TransactionBalanceComponent,
+    TransactionDataComponent,
+    TransactionFilterComponent,
+    SummaryComponent
   ]
 })
 export class TestModule { } 

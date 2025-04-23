@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NavigationEnd, Router } from '@angular/router';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { AuthService } from '../../../core/auth/services/auth.service';
 import { ThemeService } from '../../../core/services/theme.service';
 import { TestModule } from '../../../test.module';
@@ -11,21 +11,25 @@ describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
   let authService: jasmine.SpyObj<AuthService>;
   let themeService: jasmine.SpyObj<ThemeService>;
-  let router: jasmine.SpyObj<Router>;
+  let router: Router;
+  let eventsSubject: Subject<any>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    eventsSubject = new Subject<any>();
+    const routerMock = {
+      events: eventsSubject.asObservable(),
+      navigate: jasmine.createSpy('navigate')
+    };
+
     const authServiceSpy = jasmine.createSpyObj('AuthService', ['isAuthenticated', 'logout']);
     const themeServiceSpy = jasmine.createSpyObj('ThemeService', ['isDarkMode', 'toggleDarkMode']);
-    const routerSpy = jasmine.createSpyObj('Router', ['navigate'], {
-      events: of(new NavigationEnd(1, '/dashboard', '/dashboard'))
-    });
 
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [TestModule],
       providers: [
         { provide: AuthService, useValue: authServiceSpy },
         { provide: ThemeService, useValue: themeServiceSpy },
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: routerMock }
       ]
     }).compileComponents();
 
@@ -33,7 +37,7 @@ describe('HeaderComponent', () => {
     component = fixture.componentInstance;
     authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
     themeService = TestBed.inject(ThemeService) as jasmine.SpyObj<ThemeService>;
-    router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+    router = TestBed.inject(Router);
 
     authService.isAuthenticated.and.returnValue(true);
     themeService.isDarkMode.and.returnValue(of(false));
@@ -68,12 +72,16 @@ describe('HeaderComponent', () => {
 
   it('should update dark mode state when theme changes', fakeAsync(() => {
     themeService.isDarkMode.and.returnValue(of(true));
-    component.ngOnInit();
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
     tick();
     expect(component.isDarkMode).toBeTrue();
 
     themeService.isDarkMode.and.returnValue(of(false));
-    component.ngOnInit();
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
     tick();
     expect(component.isDarkMode).toBeFalse();
   }));
@@ -105,11 +113,8 @@ describe('HeaderComponent', () => {
 
   it('should update current route on navigation', fakeAsync(() => {
     const navigationEnd = new NavigationEnd(1, '/summary', '/summary');
-    (router as any).events = of(navigationEnd);
-
-    component.ngOnInit();
+    eventsSubject.next(navigationEnd);
     tick();
-
     expect(component.currentRoute).toBe('/summary');
   }));
 });

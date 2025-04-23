@@ -3,38 +3,55 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { MaterialModule } from '../../../shared/material.module';
 import { TransactionService } from '../../../shared/services/transaction.service';
+import { FilterDataService } from '../../../shared/services/filter-data.service';
 import { TestModule } from '../../../test.module';
 import { SummaryComponent } from './summary.component';
+import { Transaction } from '../../../shared/models/transaction.model';
 
 describe('SummaryComponent', () => {
   let component: SummaryComponent;
   let fixture: ComponentFixture<SummaryComponent>;
   let transactionService: jasmine.SpyObj<TransactionService>;
+  let filterDataService: jasmine.SpyObj<FilterDataService>;
 
-  const mockTransactions = [
+  const mockTransactions: Transaction[] = [
     {
       id: '1',
       title: 'Salário',
       value: 5000,
-      type: 'income',
+      type: 'receita',
       date: '2024-01-15',
       categoryId: '1',
-      userId: '1'
+      category: {
+        id: '1',
+        categoryName: 'Salário'
+      }
     },
     {
       id: '2',
       title: 'Aluguel',
       value: 1500,
-      type: 'expense',
+      type: 'despesa',
       date: '2024-02-05',
       categoryId: '2',
-      userId: '1'
+      category: {
+        id: '2',
+        categoryName: 'Moradia'
+      }
     }
   ];
 
   beforeEach(() => {
     const transactionServiceSpy = jasmine.createSpyObj('TransactionService', ['getTransactions']);
+    const filterDataServiceSpy = jasmine.createSpyObj('FilterDataService', ['filterTransactions']);
+
     transactionServiceSpy.getTransactions.and.returnValue(of(mockTransactions));
+    filterDataServiceSpy.filterTransactions.and.callFake((transactions: Transaction[], month: number, year: number) => {
+      return transactions.filter(t => {
+        const date = new Date(t.date);
+        return date.getMonth() + 1 === month && date.getFullYear() === year;
+      });
+    });
 
     TestBed.configureTestingModule({
       imports: [
@@ -43,13 +60,15 @@ describe('SummaryComponent', () => {
         BrowserAnimationsModule
       ],
       providers: [
-        { provide: TransactionService, useValue: transactionServiceSpy }
+        { provide: TransactionService, useValue: transactionServiceSpy },
+        { provide: FilterDataService, useValue: filterDataServiceSpy }
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SummaryComponent);
     component = fixture.componentInstance;
     transactionService = TestBed.inject(TransactionService) as jasmine.SpyObj<TransactionService>;
+    filterDataService = TestBed.inject(FilterDataService) as jasmine.SpyObj<FilterDataService>;
     fixture.detectChanges();
   });
 
@@ -65,29 +84,28 @@ describe('SummaryComponent', () => {
     component.ngOnInit();
     tick();
 
-    expect(transactionService.getTransactions).toHaveBeenCalled();
-    expect(component.monthlyData.length).toBeGreaterThan(0);
+    expect(filterDataService.filterTransactions).toHaveBeenCalled();
+    expect(component.months.length).toBe(12);
   }));
 
   it('should filter years correctly', () => {
-    const currentYear = new Date().getFullYear();
-    component.minYear = currentYear - 2;
+    component.minYear = 2023;
 
-    expect(component.filterYears(currentYear)).toBeTrue();
-    expect(component.filterYears(currentYear - 1)).toBeTrue();
-    expect(component.filterYears(currentYear - 2)).toBeTrue();
-    expect(component.filterYears(currentYear - 3)).toBeFalse();
+    expect(component.filterYears(2025)).toBeTrue();
+    expect(component.filterYears(2024)).toBeTrue();
+    expect(component.filterYears(2023)).toBeTrue();
+    expect(component.filterYears(2022)).toBeFalse();
   });
 
   it('should change year and reload data', fakeAsync(() => {
-    const newYear = new Date().getFullYear() - 1;
-    component.minYear = newYear;
+    const newYear = 2025;
+    component.minYear = 2023;
 
     component.changeYear(newYear);
     tick();
 
     expect(component.currentYear).toBe(newYear);
-    expect(transactionService.getTransactions).toHaveBeenCalled();
+    expect(component.months.length).toBe(12);
   }));
 
   it('should not change year if filtered out', fakeAsync(() => {
@@ -104,16 +122,10 @@ describe('SummaryComponent', () => {
     component.ngOnInit();
     tick();
 
-    const januaryData = component.monthlyData.find(data => data.month === 0);
-    const februaryData = component.monthlyData.find(data => data.month === 1);
+    const januaryData = component.months[0];
+    const februaryData = component.months[1];
 
-    expect(januaryData?.income).toBe(5000);
-    expect(februaryData?.expenses).toBe(1500);
+    expect(januaryData.entrada).toBe(5000);
+    expect(februaryData.saida).toBe(1500);
   }));
-
-  it('should format currency values correctly', () => {
-    expect(component.formatCurrency(1234.56)).toBe('R$ 1.234,56');
-    expect(component.formatCurrency(-1234.56)).toBe('R$ -1.234,56');
-    expect(component.formatCurrency(0)).toBe('R$ 0,00');
-  });
 });

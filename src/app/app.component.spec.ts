@@ -9,7 +9,7 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TestModule],
-      declarations: [AppComponent]
+      declarations: []  // AppComponent is already declared in TestModule
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);

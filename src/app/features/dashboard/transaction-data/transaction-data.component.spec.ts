@@ -4,9 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { of } from 'rxjs';
-import { Transaction } from 'src/app/shared/models/transaction.model';
-import { FilterDataService } from 'src/app/shared/services/filter-data.service';
-import { TransactionService } from 'src/app/shared/services/transaction.service';
+import { Transaction } from '../../../shared/models/transaction.model';
+import { FilterDataService } from '../../../shared/services/filter-data.service';
+import { TransactionService } from '../../../shared/services/transaction.service';
 import { TestModule } from '../../../test.module';
 import { TransactionInputComponent } from '../transaction-input/transaction-input.component';
 import { TransactionDataComponent } from './transaction-data.component';
@@ -21,8 +21,30 @@ describe('TransactionDataComponent', () => {
   let router: jasmine.SpyObj<Router>;
 
   const mockTransactions: Transaction[] = [
-    { id: 1, description: 'Salário', value: 5000, type: 'receita', date: '2024-04-01', category: 'Salário' },
-    { id: 2, description: 'Aluguel', value: 1500, type: 'despesa', date: '2024-04-05', category: 'Moradia' }
+    {
+      id: '1',
+      title: 'Salário',
+      value: 5000,
+      type: 'receita',
+      date: '2024-04-01',
+      categoryId: '1',
+      category: {
+        id: '1',
+        categoryName: 'Salário'
+      }
+    },
+    {
+      id: '2',
+      title: 'Aluguel',
+      value: 1500,
+      type: 'despesa',
+      date: '2024-04-05',
+      categoryId: '2',
+      category: {
+        id: '2',
+        categoryName: 'Moradia'
+      }
+    }
   ];
 
   beforeEach(() => {
@@ -105,12 +127,16 @@ describe('TransactionDataComponent', () => {
 
   it('should create transaction when dialog is closed with data', fakeAsync(() => {
     const newTransaction: Transaction = {
-      id: 3,
-      description: 'Nova Transação',
+      id: '3',
+      title: 'Nova Transação',
       value: 1000,
       type: 'receita',
       date: '2024-04-15',
-      category: 'Outros'
+      categoryId: '3',
+      category: {
+        id: '3',
+        categoryName: 'Outros'
+      }
     };
 
     const dialogRef = jasmine.createSpyObj('MatDialogRef', ['afterClosed']);
@@ -165,5 +191,29 @@ describe('TransactionDataComponent', () => {
     expect(component.selectedYear).toBe(2024);
     expect(datepicker.close).toHaveBeenCalled();
     expect(filterDataService.filterTransactions).toHaveBeenCalled();
+  });
+
+  it('should update transactions when filter changes', () => {
+    const newTransaction: Transaction = {
+      id: '3',
+      title: 'Nova Transação',
+      value: 1000,
+      type: 'receita',
+      date: '2024-04-15',
+      categoryId: '3',
+      category: {
+        id: '3',
+        categoryName: 'Outros'
+      }
+    };
+
+    const updatedTransactions = [...mockTransactions, newTransaction];
+    filterDataService.filterTransactions.and.returnValue(updatedTransactions);
+    transactionService.getTransactions.and.returnValue(of(updatedTransactions));
+
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(component.transactions).toEqual(updatedTransactions);
   });
 });

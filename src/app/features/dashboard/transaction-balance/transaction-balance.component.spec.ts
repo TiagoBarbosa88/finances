@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import moment from 'moment';
 import { of } from 'rxjs';
-import { Transaction } from 'src/app/shared/models/transaction.model';
-import { FilterDataService } from 'src/app/shared/services/filter-data.service';
-import { TransactionService } from 'src/app/shared/services/transaction.service';
+import { Transaction } from '../../../shared/models/transaction.model';
+import { FilterDataService } from '../../../shared/services/filter-data.service';
+import { TransactionService } from '../../../shared/services/transaction.service';
 import { TestModule } from '../../../test.module';
 import { TransactionBalanceComponent } from './transaction-balance.component';
 
@@ -14,10 +14,54 @@ describe('TransactionBalanceComponent', () => {
   let transactionService: jasmine.SpyObj<TransactionService>;
 
   const mockTransactions: Transaction[] = [
-    { id: 1, description: 'Salário', value: 5000, type: 'receita', date: '2024-04-01', category: 'Salário' },
-    { id: 2, description: 'Aluguel', value: 1500, type: 'despesa', date: '2024-04-05', category: 'Moradia' },
-    { id: 3, description: 'Freelance', value: 2000, type: 'receita', date: '2024-04-10', category: 'Freelance' },
-    { id: 4, description: 'Mercado', value: 800, type: 'despesa', date: '2024-04-15', category: 'Alimentação' }
+    {
+      id: '1',
+      title: 'Salário',
+      value: 5000,
+      type: 'receita',
+      date: '2024-04-01',
+      categoryId: '1',
+      category: {
+        id: '1',
+        categoryName: 'Salário'
+      }
+    },
+    {
+      id: '2',
+      title: 'Aluguel',
+      value: 1500,
+      type: 'despesa',
+      date: '2024-04-05',
+      categoryId: '2',
+      category: {
+        id: '2',
+        categoryName: 'Moradia'
+      }
+    },
+    {
+      id: '3',
+      title: 'Freelance',
+      value: 2000,
+      type: 'receita',
+      date: '2024-04-10',
+      categoryId: '3',
+      category: {
+        id: '3',
+        categoryName: 'Freelance'
+      }
+    },
+    {
+      id: '4',
+      title: 'Mercado',
+      value: 800,
+      type: 'despesa',
+      date: '2024-04-15',
+      categoryId: '4',
+      category: {
+        id: '4',
+        categoryName: 'Alimentação'
+      }
+    }
   ];
 
   beforeEach(() => {

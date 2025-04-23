@@ -2,9 +2,15 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
-import { AuthService } from '../../../core/auth/services/auth.service';
+import { AuthService, User } from '../../../core/auth/services/auth.service';
 import { TestModule } from '../../../test.module';
 import { HomeComponent } from './home.component';
+
+const mockUser: User = {
+  id: 1,
+  name: 'Test User',
+  email: 'test@example.com'
+};
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -12,17 +18,20 @@ describe('HomeComponent', () => {
   let authService: jasmine.SpyObj<AuthService>;
   let router: jasmine.SpyObj<Router>;
 
-  beforeEach(() => {
-    const authServiceSpy = jasmine.createSpyObj('AuthService', ['login', 'register', 'isAuthenticated']);
-    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+  beforeEach(async () => {
+    const authServiceSpy = jasmine.createSpyObj('AuthService', ['getCurrentUser', 'login', 'register', 'isAuthenticated']);
+    authServiceSpy.getCurrentUser.and.returnValue(mockUser);
+    authServiceSpy.login.and.returnValue(of(mockUser));
+    authServiceSpy.register.and.returnValue(of(mockUser));
+    authServiceSpy.isAuthenticated.and.returnValue(true);
 
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [TestModule, ReactiveFormsModule],
       declarations: [HomeComponent],
       providers: [
         FormBuilder,
         { provide: AuthService, useValue: authServiceSpy },
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: jasmine.createSpyObj('Router', ['navigate']) }
       ]
     }).compileComponents();
 
@@ -159,4 +168,29 @@ describe('HomeComponent', () => {
     expect(component.error).toBe(errorMessage);
     expect(component.loading).toBeFalse();
   }));
+
+  it('should get current user on init', () => {
+    expect(authService.getCurrentUser).toHaveBeenCalled();
+  });
+
+  it('should handle login', () => {
+    const credentials = {
+      email: 'test@example.com',
+      password: 'password123'
+    };
+
+    component.login(credentials);
+    expect(authService.login).toHaveBeenCalledWith(credentials.email, credentials.password);
+  });
+
+  it('should handle register', () => {
+    const userData = {
+      name: 'Test User',
+      email: 'test@example.com',
+      password: 'password123'
+    };
+
+    component.register(userData);
+    expect(authService.register).toHaveBeenCalledWith(userData.email, userData.password, userData.name);
+  });
 });
