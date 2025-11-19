@@ -4,7 +4,6 @@ import { of } from 'rxjs';
 import { MaterialModule } from '../../../shared/material.module';
 import { TransactionService } from '../../../shared/services/transaction.service';
 import { FilterDataService } from '../../../shared/services/filter-data.service';
-import { TestModule } from '../../../test.module';
 import { SummaryComponent } from './summary.component';
 import { Transaction } from '../../../shared/models/transaction.model';
 
@@ -55,7 +54,6 @@ describe('SummaryComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        TestModule,
         MaterialModule,
         BrowserAnimationsModule
       ],

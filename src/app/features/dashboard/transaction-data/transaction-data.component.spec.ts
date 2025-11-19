@@ -2,12 +2,11 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import { of } from 'rxjs';
 import { Transaction } from '../../../shared/models/transaction.model';
 import { FilterDataService } from '../../../shared/services/filter-data.service';
 import { TransactionService } from '../../../shared/services/transaction.service';
-import { TestModule } from '../../../test.module';
 import { TransactionInputComponent } from '../transaction-input/transaction-input.component';
 import { TransactionDataComponent } from './transaction-data.component';
 
@@ -61,7 +60,7 @@ describe('TransactionDataComponent', () => {
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
-      imports: [TestModule],
+      imports: [],
       declarations: [TransactionDataComponent],
       providers: [
         { provide: MatDialog, useValue: dialogSpy },

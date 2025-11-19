@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { TestModule } from './test.module';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -8,7 +7,7 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TestModule],
+      imports: [],
       declarations: []  // AppComponent is already declared in TestModule
     }).compileComponents();
 

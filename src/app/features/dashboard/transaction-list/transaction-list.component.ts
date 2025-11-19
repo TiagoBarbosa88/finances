@@ -1,16 +1,16 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, ChangeDetectorRef, Component, inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { TransactionService } from 'src/app/shared/services/transaction.service';
-import { CategoriesService } from 'src/app/shared/services/categories.service';
-import { Transaction } from 'src/app/shared/models/transaction.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/shared/models/category.model';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Transaction } from 'src/app/shared/models/transaction.model';
+import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { FilterDataService } from 'src/app/shared/services/filter-data.service';
 import { MenssageriaService } from 'src/app/shared/services/menssageria.service';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { TransactionService } from 'src/app/shared/services/transaction.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -31,7 +31,7 @@ export class TransactionListComponent implements AfterViewInit, OnInit {
   selectedMonth!: number;
   selectedYear!: number;
 
-  private router = Inject(Router);
+  private router = inject(Router);
 
   displayedColumns: string[] = ['title', 'value', 'type', 'category', 'date', 'actions'];
 
@@ -134,7 +134,7 @@ export class TransactionListComponent implements AfterViewInit, OnInit {
   }
 
   navigateToHome(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
   fetchTransactions() {

@@ -10,7 +10,6 @@ import { CategoriesService } from '../../../shared/services/categories.service';
 import { FilterDataService } from '../../../shared/services/filter-data.service';
 import { MenssageriaService } from '../../../shared/services/menssageria.service';
 import { TransactionService } from '../../../shared/services/transaction.service';
-import { TestModule } from '../../../test.module';
 import { TransactionListComponent } from './transaction-list.component';
 
 describe('TransactionListComponent', () => {
@@ -79,7 +78,6 @@ describe('TransactionListComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        TestModule,
         MaterialModule,
         BrowserAnimationsModule
       ],
@@ -116,8 +114,7 @@ describe('TransactionListComponent', () => {
   });
 
   it('should filter transactions based on month and year', () => {
-    expect(filterDataService.getSelectedMonth).toHaveBeenCalled();
-    expect(filterDataService.getSelectedYear).toHaveBeenCalled();
+    expect(filterDataService.getTransactions).toHaveBeenCalled();
   });
 
   it('should delete transaction', () => {

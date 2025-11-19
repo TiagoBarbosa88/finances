@@ -1,11 +1,10 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import * as moment from 'moment';
+import moment from 'moment';
 import { of } from 'rxjs';
 import { Transaction } from '../../../shared/models/transaction.model';
 import { FilterDataService } from '../../../shared/services/filter-data.service';
 import { TransactionService } from '../../../shared/services/transaction.service';
-import { TestModule } from '../../../test.module';
 import { TransactionFilterComponent } from './transaction-filter.component';
 
 describe('TransactionFilterComponent', () => {
@@ -64,7 +63,7 @@ describe('TransactionFilterComponent', () => {
     breakpointObserverSpy.observe.and.returnValue(of({ matches: true }));
 
     TestBed.configureTestingModule({
-      imports: [TestModule],
+      imports: [],
       declarations: [TransactionFilterComponent],
       providers: [
         { provide: TransactionService, useValue: transactionServiceSpy },
