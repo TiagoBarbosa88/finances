@@ -3,7 +3,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { of, Subject } from 'rxjs';
 import { AuthService } from '../../../core/auth/services/auth.service';
 import { ThemeService } from '../../../core/services/theme.service';
-import { TestModule } from '../../../test.module';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -25,7 +24,7 @@ describe('HeaderComponent', () => {
     const themeServiceSpy = jasmine.createSpyObj('ThemeService', ['isDarkMode', 'toggleDarkMode']);
 
     await TestBed.configureTestingModule({
-      imports: [TestModule],
+      imports: [],
       providers: [
         { provide: AuthService, useValue: authServiceSpy },
         { provide: ThemeService, useValue: themeServiceSpy },

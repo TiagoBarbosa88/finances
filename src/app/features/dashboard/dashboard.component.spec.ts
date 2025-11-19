@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TestModule } from '../../test.module';
 import { DashboardComponent } from './dashboard.component';
 import { TransactionBalanceComponent } from './transaction-balance/transaction-balance.component';
 import { TransactionDataComponent } from './transaction-data/transaction-data.component';
@@ -12,7 +11,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TestModule],
+      imports: [],
       declarations: [
         DashboardComponent,
         TransactionBalanceComponent,

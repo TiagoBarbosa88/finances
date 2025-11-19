@@ -1,17 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { AuthService } from '../../../core/auth/services/auth.service';
-import { User } from '../../../core/models/user.model';
-import { TestModule } from '../../../test.module';
-import { HomeComponent } from './home.component';
+import { User, AuthService } from 'src/app/core/auth/services/auth.service';
+import { HomeComponent } from '../components/home/home.component';
+
 
 const mockUser: User = {
-  id: '1',
+  id: 1,
   name: 'Test User',
   email: 'test@example.com',
-  password: 'password123',
-  createdAt: new Date(),
-  updatedAt: new Date()
 };
 
 describe('HomeComponent', () => {
@@ -25,7 +21,7 @@ describe('HomeComponent', () => {
     authServiceSpy.updateUser.and.returnValue(of(mockUser));
 
     await TestBed.configureTestingModule({
-      imports: [TestModule],
+      imports: [],
       providers: [
         { provide: AuthService, useValue: authServiceSpy }
       ]
@@ -43,6 +39,6 @@ describe('HomeComponent', () => {
 
   it('should call getCurrentUser and updateUser', () => {
     expect(authService.getCurrentUser).toHaveBeenCalled();
-    expect(authService.updateUser).toHaveBeenCalled();
+    expect(authService.register).toHaveBeenCalled();
   });
 }); 

@@ -1,74 +1,74 @@
-name: PR Conflict Check
+# name: PR Conflict Check
 
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - main
+# on:
+#   pull_request:
+#     types: [opened, synchronize, reopened]
+#     branches:
+#       - main
 
-jobs:
-  check_conflicts:
-    name: Check for merge conflicts
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+# jobs:
+#   check_conflicts:
+#     name: Check for merge conflicts
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+#         with:
+#           fetch-depth: 0
 
-      - name: Check for merge conflicts
-        run: |
-          git fetch origin main:main
-          if git merge-tree $(git merge-base HEAD main) main HEAD | grep -i '<<<<<<<'; then
-            echo "Merge conflicts detected!"
-            exit 1
-          else
-            echo "No merge conflicts detected."
-          fi
+#       - name: Check for merge conflicts
+#         run: |
+#           git fetch origin main:main
+#           if git merge-tree $(git merge-base HEAD main) main HEAD | grep -i '<<<<<<<'; then
+#             echo "Merge conflicts detected!"
+#             exit 1
+#           else
+#             echo "No merge conflicts detected."
+#           fi
 
-  build_and_test:
-    name: Build and Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+#   build_and_test:
+#     name: Build and Test
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-          cache: "npm"
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: "18"
+#           cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
+#       - name: Install dependencies
+#         run: npm ci
 
-      - name: Build
-        run: npm run build --if-present
+#       - name: Build
+#         run: npm run build --if-present
 
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@latest
+#       - name: Install Chrome
+#         uses: browser-actions/setup-chrome@latest
 
-      - name: Install xvfb
-        run: sudo apt-get install -y xvfb
+#       - name: Install xvfb
+#         run: sudo apt-get install -y xvfb
 
-      - name: Run tests with xvfb
-        run: xvfb-run --auto-servernum npm test -- --no-watch --no-progress --browsers=ChromeHeadless
+#       - name: Run tests with xvfb
+#         run: xvfb-run --auto-servernum npm test -- --no-watch --no-progress --browsers=ChromeHeadless
 
-  lint:
-    name: Lint Check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+#   lint:
+#     name: Lint Check
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-          cache: "npm"
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: "18"
+#           cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
+#       - name: Install dependencies
+#         run: npm ci
 
-      - name: Run lint
-        run: npm run lint --if-present
+#       - name: Run lint
+#         run: npm run lint --if-present

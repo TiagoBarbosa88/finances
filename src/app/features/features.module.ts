@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MaterialModule } from '../shared/material.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -39,6 +42,8 @@ import { TransactionListComponent } from './dashboard/transaction-list/transacti
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     MaterialModule,
   ],
   exports: [
@@ -55,5 +60,6 @@ import { TransactionListComponent } from './dashboard/transaction-list/transacti
     ProfileComponent,
     SettingsComponent,
   ],
+  providers: [CurrencyPipe],
 })
 export class FeaturesModule {}
