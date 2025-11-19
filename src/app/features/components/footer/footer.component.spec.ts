@@ -25,7 +25,7 @@ describe('FooterComponent', () => {
     expect(component.currentYear).toBe(currentYear);
   });
 
-  it('should display current year in template', () => {
+  it('Deveria mostrar o ano atual no template', () => {
     const footerElement = fixture.nativeElement;
     const currentYear = new Date().getFullYear();
     expect(footerElement.textContent).toContain(currentYear.toString());

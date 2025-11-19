@@ -6,6 +6,7 @@ import { TransactionService } from '../../../shared/services/transaction.service
 import { FilterDataService } from '../../../shared/services/filter-data.service';
 import { SummaryComponent } from './summary.component';
 import { Transaction } from '../../../shared/models/transaction.model';
+import { CurrencyPipe } from '@angular/common';
 
 describe('SummaryComponent', () => {
   let component: SummaryComponent;
@@ -55,7 +56,8 @@ describe('SummaryComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule, 
+        CurrencyPipe
       ],
       providers: [
         { provide: TransactionService, useValue: transactionServiceSpy },
@@ -86,7 +88,7 @@ describe('SummaryComponent', () => {
     expect(component.months.length).toBe(12);
   }));
 
-  it('should filter years correctly', () => {
+  it('Deveria filtrar o ano corretamente', () => {
     component.minYear = 2023;
 
     expect(component.filterYears(2025)).toBeTrue();
