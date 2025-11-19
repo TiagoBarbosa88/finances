@@ -19,8 +19,6 @@ import { TransactionBalanceComponent } from './features/dashboard/transaction-ba
 import { TransactionDataComponent } from './features/dashboard/transaction-data/transaction-data.component';
 import { TransactionEditComponent } from './features/dashboard/transaction-edit/transaction-edit.component';
 import { TransactionFilterComponent } from './features/dashboard/transaction-filter/transaction-filter.component';
-import { TransactionListComponent } from './features/dashboard/transaction-list/transaction-list.component';
-import { SummaryComponent } from './features/summary/summary/summary.component';
 import { MaterialModule } from './shared/material.module';
 
 @NgModule({
@@ -29,12 +27,10 @@ import { MaterialModule } from './shared/material.module';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    TransactionListComponent,
     TransactionEditComponent,
     TransactionBalanceComponent,
     TransactionDataComponent,
     TransactionFilterComponent,
-    SummaryComponent
   ],
   imports: [
     CommonModule,
@@ -71,12 +67,10 @@ import { MaterialModule } from './shared/material.module';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    TransactionListComponent,
     TransactionEditComponent,
     TransactionBalanceComponent,
     TransactionDataComponent,
     TransactionFilterComponent,
-    SummaryComponent
   ]
 })
 export class TestModule { } 

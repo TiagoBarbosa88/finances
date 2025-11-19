@@ -10,13 +10,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TransactionBalanceComponent } from './dashboard/transaction-balance/transaction-balance.component';
 import { HomeComponent } from './components/home/home.component';
 import { TransactionInputComponent } from './dashboard/transaction-input/transaction-input.component';
-import { TransactionListComponent } from './dashboard/transaction-list/transaction-list.component';
 import { TransactionEditComponent } from './dashboard/transaction-edit/transaction-edit.component';
 import { TransactionDataComponent } from './dashboard/transaction-data/transaction-data.component';
 import { TransactionFilterComponent } from './dashboard/transaction-filter/transaction-filter.component';
 import { SummaryComponent } from './summary/summary/summary.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { TransactionListComponent } from './dashboard/transaction-list/transaction-list.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +32,14 @@ import { SettingsComponent } from './components/settings/settings.component';
     TransactionFilterComponent,
     SummaryComponent,
     ProfileComponent,
-    SettingsComponent
+    SettingsComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
   ],
   exports: [
     HeaderComponent,
@@ -53,7 +53,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     TransactionFilterComponent,
     SummaryComponent,
     ProfileComponent,
-    SettingsComponent
-  ]
+    SettingsComponent,
+  ],
 })
-export class FeaturesModule { } 
+export class FeaturesModule {}
